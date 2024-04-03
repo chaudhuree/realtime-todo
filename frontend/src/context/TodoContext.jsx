@@ -86,6 +86,10 @@ export const TodoProvider = ({ children }) => {
         toast.error("Please fill all fields");
         return;
       }
+      if(todo.length < 5){
+        toast.error("Todo must be at least 5 characters");
+        return;
+      }
       const response = await fetch("https://yourtodo-juvt.onrender.com/api/v1/todos", {
         method: "POST",
         headers: {
@@ -154,6 +158,14 @@ export const TodoProvider = ({ children }) => {
   // update todo
   const updateTodo =async (id,todo)=>{
     try {
+      if(todo === ""){
+        toast.error("Please fill all fields");
+        return;
+      }
+      if(todo.length < 5){
+        toast.error("Todo must be at least 5 characters");
+        return;
+      }
       const response = await fetch(
         `https://yourtodo-juvt.onrender.com/api/v1/todo/${id}`,
         {
