@@ -1,7 +1,9 @@
 import { BiLogIn } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import useTodo from "../context/TodoContext";
 
 export default function Navbar() {
+  const { token } = useTodo();
   const handleLogout = () => {
     localStorage.removeItem("auth");
     window.location.reload();
@@ -13,9 +15,14 @@ export default function Navbar() {
           YOUR<span className="text-todo-red">TODO</span>
         </Link>
       </div>
-      <div onClick={handleLogout} className="flex-none text-todo-light text-xl lg:text-3xl hover:text-todo-red delay-100 ">
-        <BiLogIn />
-      </div>
+      {token ? (
+        <div
+          onClick={handleLogout}
+          className="flex-none text-todo-light text-xl lg:text-3xl hover:text-todo-red delay-100 "
+        >
+          <BiLogIn />
+        </div>
+      ) : null}
     </div>
   );
 }
