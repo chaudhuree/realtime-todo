@@ -56,7 +56,6 @@ export const TodoProvider = ({ children }) => {
   };
 
 
-  // doing ****************************
   const fetchTodos = async (pageNo=1,limit=4) => {
     try {
       const response = await fetch(`https://yourtodo-juvt.onrender.com/api/v1/todos/pagination?page=${pageNo}&limit=${limit}`, {
