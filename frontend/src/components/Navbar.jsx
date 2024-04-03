@@ -1,9 +1,10 @@
 import { BiLogIn } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import useTodo from "../context/TodoContext";
 
 export default function Navbar() {
-  const authCheck = localStorage.getItem("auth");
+  const authCheck = JSON.parse(localStorage.getItem("auth"))?.user.userId;
+  console.log("authCheck", authCheck);
+
   const handleLogout = () => {
     localStorage.removeItem("auth");
     window.location.reload();
@@ -15,7 +16,7 @@ export default function Navbar() {
           YOUR<span className="text-todo-red">TODO</span>
         </Link>
       </div>
-      {authCheck?.user?.userId ? (
+      {authCheck ? (
         <div
           onClick={handleLogout}
           className="flex-none text-todo-light text-xl lg:text-3xl hover:text-todo-red delay-100 "
