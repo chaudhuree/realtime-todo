@@ -15,7 +15,7 @@ export const TodoProvider = ({ children }) => {
   const socket = useRef();
   const completedTodos = todos?.filter((todo) => todo.completed)?.length || 0;
   useEffect(() => {
-    socket.current = io("http://localhost:5000");
+    socket.current = io("https://yourtodo-juvt.onrender.com");
     const auth = JSON.parse(localStorage.getItem("auth"));
     if (auth) {
       setUserId(auth.user.userId);
@@ -30,7 +30,7 @@ export const TodoProvider = ({ children }) => {
         toast.error("Please fill all fields");
         return;
       }
-      const response = await fetch("http://localhost:5000/api/v1/register", {
+      const response = await fetch("https://yourtodo-juvt.onrender.com/api/v1/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const TodoProvider = ({ children }) => {
   // doing ****************************
   const fetchTodos = async (pageNo=1,limit=4) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/todos/pagination?page=${pageNo}&limit=${limit}`, {
+      const response = await fetch(`https://yourtodo-juvt.onrender.com/api/v1/todos/pagination?page=${pageNo}&limit=${limit}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,7 +86,7 @@ export const TodoProvider = ({ children }) => {
         toast.error("Please fill all fields");
         return;
       }
-      const response = await fetch("http://localhost:5000/api/v1/todos", {
+      const response = await fetch("https://yourtodo-juvt.onrender.com/api/v1/todos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export const TodoProvider = ({ children }) => {
 
   const deleteTodo = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/todo/${id}`, {
+      const response = await fetch(`https://yourtodo-juvt.onrender.com/api/v1/todo/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -130,7 +130,7 @@ export const TodoProvider = ({ children }) => {
   const handleCompleted = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/todo/completed/${id}`,
+        `https://yourtodo-juvt.onrender.com/api/v1/todo/completed/${id}`,
         {
           method: "PUT",
           headers: {
@@ -155,7 +155,7 @@ export const TodoProvider = ({ children }) => {
   const updateTodo =async (id,todo)=>{
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/todo/${id}`,
+        `https://yourtodo-juvt.onrender.com/api/v1/todo/${id}`,
         {
           method: "PUT",
           headers: {
@@ -218,7 +218,7 @@ export const TodoProvider = ({ children }) => {
         toast.error("Please fill all fields");
         return;
       }
-      const response = await fetch("http://localhost:5000/api/v1/login", {
+      const response = await fetch("https://yourtodo-juvt.onrender.com/api/v1/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
